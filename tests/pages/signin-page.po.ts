@@ -1,11 +1,11 @@
 import { Page, expect } from "@playwright/test";
 
 export class SignInPage {
-  constructor(private readonly page: Page) {
+  constructor( private readonly page: Page) {
 
   }
   async visit() {
-        this.page.goto('https://www.saucedemo.com/v1/')
+        await this.page.goto('https://www.saucedemo.com/v1/')
   }
   async fillUserName(userName: string) {
     const usernameInput = this.page.locator('[data-test="username"]')
@@ -21,9 +21,8 @@ export class SignInPage {
 
   }
 
-  async checkIfSuccessful() {
+  async navigateToProductsPage() {
     const productPageHeading = await this.page.locator('.product_label').textContent()
     expect(productPageHeading).toBe('Products')
-
   }
 }
